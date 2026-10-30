@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>svg图标</title>
+    <script src="https://at.alicdn.com/t/c/font_5231893_p8h5sffpwb.js"></script>
+    <link rel="stylesheet" href="svg005.css">
+</head>
+<body>
+    <h3>svg图标</h3>
+    <div class="tab-nav">
+        <!-- 默认首页激活active -->
+        <div class="tab-item active" onclick="changeTab(this)">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-shouye1"></use>
+            </svg>
+            <span>首页</span>
+            <div class="budge-dot" id="budge-home"></div>
+        </div>
+        <!-- 原来【计划】改成【喜欢】，图标换成爱心 #icon-xihuan -->
+        <div class="tab-item" onclick="changeTab(this)">
+            <svg class="icon    " aria-hidden="true">
+                <use xlink:href="#icon-aixin"></use>
+            </svg>
+            <span>喜欢</span>
+            <div class="budge-num" id="budge-like">6</div>
+        </div>
+        <div class="tab-item" onclick="changeTab(this)">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-jiahao"></use>
+            </svg>
+            <span>收藏</span>
+            <div class="budge-border" id="budge-collect"></div>
+        </div>
+        <div class="tab-item" onclick="changeTab(this)">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-wode"></use>
+            </svg>
+            <span>我的</span>
+            <div class="budge-num max" id="my">100+</div>
+        </div>
+    </div>
+    <script>
+        function changeTab(current) {
+            let tabs = document.querySelectorAll(".tab-item");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            current.classList.add("active");
+        }
+    </script>
+</body>
+</html>

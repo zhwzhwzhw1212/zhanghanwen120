@@ -38,6 +38,12 @@
 
 ---
 
+**时间**：2026-10-30 14:58
+**模型**：opencode/big-pickle
+**提示词**：创建一个项目技能skill，提交项目，将项目通过git commit并push到gitee仓库，gitee私人令牌：[已脱敏]；仓库地址：git clone https://gitee.com/neusoft_wangyao_jsj/webprojectzhanghanwen.git，给我创建一个学号+姓名的文件夹，并将本地 C:\Users\DELL\Desktop\高级网页设计\webprojectzhanghanwen 项目提交到我创建的文件夹中。
+
+---
+
 **时间**：2026-10-30
 **模型**：Trae CN（proprietary model）
 **提示词**：创建技能skill：提交到github，将本项目提交commit并push到`https://github.com/zhwzhwzhw1212/zhanghanwen120.git`，使用已设置公钥。
