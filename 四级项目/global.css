@@ -1,0 +1,94 @@
+/*学号：XXX 姓名：张瀚文 全局样式*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: system-ui,-apple-system,sans-serif;
+  background-color:#f5f5f5;
+  /*给底部tab留出底部空白，防止内容被遮挡*/
+  padding-bottom: 60px;
+}
+.zhw_flex{
+  display: flex;
+}
+.zhw_ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*元素1 演出列表卡片 张瀚文*/
+.zhw_show_card{
+  display:flex;
+  background:#fff;
+  padding:12px;
+  gap:12px;
+}
+.zhw_show_pic{
+  width:100px;
+  height:130px;
+  object-fit:cover;
+  border-radius:6px;
+}
+.zhw_show_info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content: space-between;
+}
+.zhw_show_title{font-size:15px;}
+.zhw_show_time{font-size:12px;color:#666;}
+.zhw_show_price{color:#f84444;font-weight:bold;}
+
+/*元素2 底部Tab导航 张瀚文*/
+.zhw_tab_bar{
+  display:flex;
+  justify-content: space-around;
+  background:#ffffff;
+  padding:8px 0;
+  position:fixed;
+  bottom:0;
+  width:100%;
+}
+.zhw_tab_item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  font-size:12px;
+}
+.zhw_tab_icon{
+  width:24px;
+  height:24px;
+  margin-bottom:4px;
+}
+
+/*元素3 热卖角标 张瀚文*/
+.zhw_card_wrap{
+  position:relative;
+  width:100px;
+  margin:10px;
+}
+.zhw_wrap_img{
+  width:100%;
+  border-radius:6px;
+}
+.zhw_hot_tag{
+  position:absolute;
+  top:4px;
+  left:4px;
+  background:#f84444;
+  color:#fff;
+  font-size:10px;
+  padding:2px 5px;
+  border-radius:2px;
+}
+/* 清除tab链接默认样式 张瀚文 */
+.zhw_tab_item a{
+    text-decoration: none;
+    color:#333;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}

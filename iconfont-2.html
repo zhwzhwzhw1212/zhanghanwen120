@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Oribi — Lucide</title>
+<link rel="stylesheet" href="./cdn/fonts/fonts.css">
+<style>
+  :root {
+    --zhw_ink:     #1A1420;
+    --zhw_paper:   #F3EFE7;
+    --zhw_champ:   #B89664;
+    --zhw_moss:    #6E7F5C;
+    --zhw_vermil:  #C94A3B;
+    --zhw_line:    #E0D6C3;
+    --zhw_muted:   #847670;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--zhw_ink);
+    background: var(--zhw_paper);
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    font-feature-settings: "ss01" 1;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---------- 顶部导航 ---------- */
+  .zhw_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 32px clamp(24px, 6vw, 72px);
+    border-bottom: 1px solid var(--zhw_line);
+  }
+  .zhw_nav-brand {
+    font-size: 1.125rem;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    font-variant: small-caps;
+    text-decoration: none;
+    color: var(--zhw_ink);
+  }
+  .zhw_nav-links {
+    display: flex;
+    gap: 28px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .zhw_nav-links a {
+    color: var(--zhw_muted);
+    text-decoration: none;
+    padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .zhw_nav-links a:hover {
+    color: var(--zhw_ink);
+    border-color: var(--zhw_vermil);
+  }
+  .zhw_nav-links a.zhw_current {
+    color: var(--zhw_ink);
+    border-color: var(--zhw_ink);
+  }
+
+  /* ---------- Hero ---------- */
+  .zhw_hero {
+    padding: clamp(56px, 10vw, 140px) clamp(24px, 6vw, 72px) clamp(40px, 8vw, 100px);
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .zhw_hero-eyebrow {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--zhw_champ);
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .zhw_hero-eyebrow::before {
+    content: "";
+    width: 44px;
+    height: 1px;
+    background: var(--zhw_champ);
+  }
+  .zhw_hero h1 {
+    font-weight: 600;
+    font-size: clamp(2.75rem, 7.5vw, 6.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    margin: 0 0 28px;
+    font-variation-settings: "opsz" 144;
+  }
+  .zhw_hero h1 em {
+    font-style: italic;
+    color: var(--zhw_vermil);
+    font-weight: 400;
+  }
+  .zhw_hero-lead {
+    max-width: 62ch;
+    font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+    line-height: 1.65;
+    color: var(--zhw_muted);
+    font-style: italic;
+    font-feature-settings: "ss02" 1;
+  }
+  .zhw_hero-meta {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--zhw_line);
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .zhw_meta-item {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zhw_muted);
+  }
+  .zhw_meta-item strong {
+    display: block;
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--zhw_ink);
+    margin-top: 4px;
+  }
+
+  /* ---------- Section title ---------- */
+  .zhw_section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: clamp(40px, 6vw, 72px) clamp(24px, 6vw, 72px);
+  }
+  .zhw_section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--zhw_ink);
+  }
+  .zhw_section-head h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 36;
+  }
+  .zhw_section-head span {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--zhw_muted);
+    white-space: nowrap;
+  }
+
+  /* ---------- Icon grid ---------- */
+  .zhw_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(156px, 1fr));
+    gap: 1px;
+    background: var(--zhw_line);
+    border: 1px solid var(--zhw_line);
+  }
+  .zhw_tile {
+    background: var(--zhw_paper);
+    padding: 28px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    transition: background .28s ease, color .28s ease, transform .28s ease;
+    cursor: default;
+  }
+  .zhw_tile:hover {
+    background: var(--zhw_ink);
+    color: var(--zhw_paper);
+    transform: translateY(-2px);
+  }
+  .zhw_tile-icon {
+    width: 36px;
+    height: 36px;
+    stroke-width: 1.5;
+    stroke: var(--zhw_ink);
+    fill: none;
+    transition: stroke .28s ease, transform .28s ease;
+  }
+  .zhw_tile:hover .zhw_tile-icon {
+    stroke: var(--zhw_vermil);
+    transform: scale(1.08);
+  }
+  .zhw_tile-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .zhw_tile-code {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    color: var(--zhw_muted);
+    font-feature-settings: "tnum" 1;
+    transition: color .28s ease;
+  }
+  .zhw_tile:hover .zhw_tile-code { color: var(--zhw_champ); }
+
+  /* ---------- Footer ---------- */
+  .zhw_foot {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 56px clamp(24px, 6vw, 72px) 48px;
+    border-top: 1px solid var(--zhw_line);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .zhw_foot-brand {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-variant: small-caps;
+    letter-spacing: 0.04em;
+  }
+  .zhw_foot-note {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--zhw_muted);
+  }
+  .zhw_back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--zhw_ink);
+    text-decoration: none;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--zhw_ink);
+    padding-bottom: 2px;
+    margin-top: 32px;
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .zhw_back:hover { color: var(--zhw_vermil); border-color: var(--zhw_vermil); }
+
+  @media (max-width: 640px) {
+    .zhw_nav-links { gap: 16px; font-size: 0.7rem; }
+    .zhw_grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+    .zhw_tile { padding: 22px 14px 18px; }
+    .zhw_tile-icon { width: 30px; height: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="zhw_nav">
+  <a class="zhw_nav-brand" href="./webprojectzhanghanwen/index.html" style="font-family:'Fraunces',serif;">Studio Oribi</a>
+  <div class="zhw_nav-links">
+    <a href="./iconfont-1.html">Font Awesome</a>
+    <a href="./iconfont-2.html" class="zhw_current">Lucide</a>
+    <a href="./webprojectzhanghanwen/index.html">课堂首页</a>
+  </div>
+</nav>
+
+<header class="zhw_hero">
+  <div class="zhw_hero-eyebrow">The Toolkit Series · 02</div>
+  <h1>Lucide —<br><em>hand-drawn</em>,<br>precision.</h1>
+  <p class="zhw_hero-lead">
+    An SVG-first set, descended from Feather's restraint. Every line is a stroke, every curve a decision — nothing painted on top, everything drawn from the mark outward.
+  </p>
+  <div class="zhw_hero-meta">
+    <div class="zhw_meta-item">Version<strong>lucide · latest</strong></div>
+    <div class="zhw_meta-item">Format<strong>Inline SVG · 1.5 stroke</strong></div>
+    <div class="zhw_meta-item">Delivery<strong>lucide.min.js · UMD</strong></div>
+    <div class="zhw_meta-item">Vector<strong>Infinite scale · tiny DOM cost</strong></div>
+  </div>
+</header>
+
+<section class="zhw_section">
+  <div class="zhw_section-head">
+    <h2>The Set — signal strokes</h2>
+    <span>zhw_28 glyphs · SVG</span>
+  </div>
+  <div class="zhw_grid" id="zhw_lucideGrid">
+    <!-- tiles injected, then lucide.createIcons() replaces placeholders with inline <svg> -->
+  </div>
+
+  <a class="zhw_back" href="./webprojectzhanghanwen/index.html">← 返回课堂首页</a>
+</section>
+
+<footer class="zhw_foot">
+  <div>
+    <div class="zhw_foot-brand">Studio Oribi</div>
+    <div class="zhw_foot-note">Icon studies · Type practice · 2026</div>
+  </div>
+  <div class="zhw_foot-note">CDN → local · no network required</div>
+</footer>
+
+<script src="./cdn/lucide/lucide.min.js"></script>
+<script>
+  /* Lucide 图标名（对应 lucide.createIcons() 的 data-lucide） */
+  const zhw_lucideNames = [
+    'heart', 'star', 'bookmark', 'user', 'home', 'search',
+    'mail', 'bell', 'camera', 'music', 'plane', 'moon',
+    'sun', 'cloud', 'leaf', 'flame', 'zap', 'key',
+    'brush', 'palette', 'feather', 'gem', 'coffee', 'chess-knight',
+    'message-circle', 'lightbulb', 'mic', 'globe'
+  ];
+
+  const zhw_grid = document.getElementById('zhw_lucideGrid');
+  zhw_grid.innerHTML = zhw_lucideNames.map(zhw_name => `
+    <div class="zhw_tile">
+      <i data-lucide="${zhw_name}" class="zhw_tile-icon" aria-hidden="true"></i>
+      <div class="zhw_tile-name">${zhw_name}</div>
+      <div class="zhw_tile-code">SVG · stroke 1.5</div>
+    </div>
+  `).join('');
+
+  /* 本地 lucide 库替换所有 data-lucide 为内联 SVG */
+  if (window.lucide) {
+    lucide.createIcons();
+  } else {
+    /* 兜底：lucide 未加载时给一个占位 */
+    document.querySelectorAll('[data-lucide]').forEach(el => {
+      el.innerHTML = '<svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>';
+    });
+  }
+</script>
+</body>
+</html>

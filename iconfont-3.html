@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#1A1420">
+<title>Studio Oribi · Mobile Nav (Font Icon)</title>
+<link rel="stylesheet" href="./cdn/fonts/fonts.css">
+<link rel="stylesheet" href="./webprojectzhanghanwen/font/iconfont.css">
+<style>
+  /* ===== 视觉令牌（沿用 Studio Oribi 深色艺术品牌） ===== */
+  :root {
+    --zhw_ink:       #1A1420;
+    --zhw_paper:     #F3EFE7;
+    --zhw_champ:     #B89664;
+    --zhw_vermil:    #C94A3B;
+    --zhw_moss:      #6E7F5C;
+    --zhw_muted:     #847670;
+    --zhw_line:      #E0D6C3;
+    /* 底部导航专用 */
+    --zhw_nav-h:     60px;
+    --zhw_nav-bg:    #FAF7F1;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    color: var(--zhw_ink);
+    background: var(--zhw_paper);
+    font-family: 'Fraunces', Georgia, "Noto Serif SC", serif;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ===== 模拟移动端容器（居中展示） ===== */
+  .zhw_phone {
+    max-width: 420px;
+    min-height: 100vh;
+    margin: 0 auto;
+    background: var(--zhw_paper);
+    position: relative;
+    /* 给 fixed 导航预留空间，iOS 安全区 */
+    padding-bottom: calc(var(--zhw_nav-h) + env(safe-area-inset-bottom));
+    box-shadow: 0 0 0 1px var(--zhw_line), 0 20px 60px rgba(26,20,32,.12);
+  }
+
+  /* ===== 顶部状态栏 + 页眉（纯展示） ===== */
+  .zhw_status {
+    padding: 16px 22px 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--zhw_muted);
+  }
+  .zhw_header {
+    padding: 8px 22px 22px;
+    border-bottom: 1px solid var(--zhw_line);
+  }
+  .zhw_header h1 {
+    margin: 0 0 4px;
+    font-weight: 600;
+    font-size: 1.75rem;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 48;
+  }
+  .zhw_header p {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zhw_champ);
+  }
+
+  /* ===== 主体内容卡片（纯展示，让导航有上下文） ===== */
+  .zhw_content {
+    padding: 20px 22px 12px;
+  }
+  .zhw_card {
+    background: #fff;
+    border: 1px solid var(--zhw_line);
+    padding: 18px 18px 20px;
+    margin-bottom: 16px;
+    border-radius: 4px;
+  }
+  .zhw_card:last-child { margin-bottom: 4px; }
+  .zhw_card h3 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .zhw_card p {
+    margin: 0;
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--zhw_muted);
+    font-feature-settings: "ss02" 1;
+    font-style: italic;
+  }
+  .zhw_card-meta {
+    margin-top: 12px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--zhw_champ);
+  }
+  .zhw_feature {
+    margin: 24px 0 8px;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--zhw_muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .zhw_feature::before {
+    content: ""; width: 24px; height: 1px; background: var(--zhw_muted);
+  }
+
+  /* ===== 固定底部导航 ===== */
+  .zhw_tabbar {
+    position: fixed;
+    left: 0; right: 0;
+    bottom: 0;
+    z-index: 100;
+    height: calc(var(--zhw_nav-h) + env(safe-area-inset-bottom));
+    background: var(--zhw_nav-bg);
+    /* 顶部分割线 */
+    border-top: 1px solid var(--zhw_line);
+    /* 玻璃态 */
+    backdrop-filter: saturate(180%) blur(10px);
+    -webkit-backdrop-filter: saturate(180%) blur(10px);
+    display: flex;
+    /* 让手机容器居中时导航宽度 = 容器宽度 */
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .zhw_tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    padding-top: 6px;
+    /* iOS 安全区，让底部内容避开 home indicator */
+    padding-bottom: calc(env(safe-area-inset-bottom) + 4px);
+    transition: color .2s ease;
+    color: var(--zhw_muted);
+    text-decoration: none;
+  }
+
+  /* iconfont 图标基础大小 */
+  .zhw_tab .iconfont {
+    font-size: 22px;
+    line-height: 1;
+    position: relative;  /* 为徽章定位参照 */
+    transition: transform .2s ease, color .2s ease;
+  }
+
+  .zhw_tab-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    transition: color .2s ease;
+  }
+
+  /* active 态：朱砂色 + 图标微抬升 */
+  .zhw_tab.zhw_active {
+    color: var(--zhw_vermil);
+  }
+  .zhw_tab.zhw_active .iconfont {
+    transform: translateY(-1px);
+  }
+
+  /* ===== 徽章 & 红点（相对 .iconfont 绝对定位） ===== */
+  .zhw_badge, .zhw_dot {
+    position: absolute;
+    /* 锚点在图标容器内右上角——用 transform 精调 */
+    top: -2px;
+    left: calc(50% + 6px);
+    transform: translate(0, 0);
+    z-index: 1;
+  }
+  /* 数字徽章 */
+  .zhw_badge {
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    border-radius: 9px;
+    background: var(--zhw_vermil);
+    color: #fff;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    box-shadow: 0 0 0 2px var(--zhw_nav-bg);
+    font-feature-settings: "tnum" 1;
+  }
+  /* 红点 */
+  .zhw_dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--zhw_vermil);
+    box-shadow: 0 0 0 2px var(--zhw_nav-bg);
+    top: 2px;
+  }
+
+  /* ===== 小屏幕（真实手机）去除阴影 ===== */
+  @media (max-width: 420px) {
+    .zhw_phone { box-shadow: none; padding-bottom: calc(var(--zhw_nav-h) + env(safe-area-inset-bottom)); }
+  }
+
+  /* ===== 桌面大屏：在屏幕底部也能看到模拟效果 ===== */
+  @media (min-width: 768px) {
+    body { padding-bottom: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="zhw_phone">
+
+  <!-- 状态栏 + 页眉 -->
+  <div class="zhw_status">
+    <span>9:41</span>
+    <span>Studio Oribi — Nav Lab</span>
+    <span>100%</span>
+  </div>
+
+  <header class="zhw_header">
+    <h1>首页</h1>
+    <p>Font-icon tab bar · iconfont.css</p>
+  </header>
+
+  <!-- 主体内容（纯展示） -->
+  <main class="zhw_content">
+    <div class="zhw_feature">FEATURED</div>
+    <article class="zhw_card">
+      <h3>今日精选</h3>
+      <p>用本地 iconfont 字体图标构建的移动端固定底部导航，4 个项目，数字徽章与红点全部手工实现，不依赖任何 UI 库。</p>
+      <div class="zhw_card-meta">read · 2 min</div>
+    </article>
+
+    <article class="zhw_card">
+      <h3>徽章 vs 红点</h3>
+      <p>数字徽章用于有具体数量的通知（3 条收藏 / 99+ 喜欢），红点仅表示有新状态待处理。相对 .iconfont 容器绝对定位，避开 active 态变换时的抖动。</p>
+      <div class="zhw_card-meta">spec · 01</div>
+    </article>
+
+    <article class="zhw_card">
+      <h3>安全区适配</h3>
+      <p>使用 CSS env(safe-area-inset-bottom) 让导航在 iPhone 全面屏上正确避开 Home Indicator。padding-bottom 同时让 body 内容不被导航遮挡。</p>
+      <div class="zhw_card-meta">detail · 2026</div>
+    </article>
+  </main>
+
+  <!-- ===== 固定底部导航（字体图标方式） ===== -->
+  <nav class="zhw_tabbar" id="zhw_tabbar">
+
+    <a class="zhw_tab zhw_active" data-zhw-tab="home" href="javascript:void(0)">
+      <span class="iconfont icon-shouye" aria-hidden="true"></span>
+      <!-- 红点 -->
+      <span class="zhw_dot" aria-label="有新内容"></span>
+      <span class="zhw_tab-label">首页</span>
+    </a>
+
+    <a class="zhw_tab" data-zhw-tab="fav" href="javascript:void(0)">
+      <span class="iconfont icon-shoucang" aria-hidden="true"></span>
+      <!-- 数字徽章 3 -->
+      <span class="zhw_badge" aria-label="3 条新收藏">3</span>
+      <span class="zhw_tab-label">收藏</span>
+    </a>
+
+    <a class="zhw_tab" data-zhw-tab="like" href="javascript:void(0)">
+      <span class="iconfont icon-xihuan" aria-hidden="true"></span>
+      <!-- 数字徽章 99+ -->
+      <span class="zhw_badge" aria-label="99 条以上新喜欢">99+</span>
+      <span class="zhw_tab-label">喜欢</span>
+    </a>
+
+    <a class="zhw_tab" data-zhw-tab="me" href="javascript:void(0)">
+      <span class="iconfont icon-wode" aria-hidden="true"></span>
+      <!-- 无徽章 -->
+      <span class="zhw_tab-label">我的</span>
+    </a>
+
+  </nav>
+</div>
+
+<script>
+  /* 点击切换 active 态（仅视觉演示） */
+  const zhw_tabbar = document.getElementById('zhw_tabbar');
+  zhw_tabbar.addEventListener('click', function(zhw_ev) {
+    const zhw_tab = zhw_ev.target.closest('.zhw_tab');
+    if (!zhw_tab) return;
+    document.querySelectorAll('.zhw_tab').forEach(t => t.classList.remove('zhw_active'));
+    zhw_tab.classList.add('zhw_active');
+  });
+</script>
+
+</body>
+</html>
