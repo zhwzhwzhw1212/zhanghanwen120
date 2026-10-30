@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<!-- filepath: c:\Users\DELL\Desktop\高级网页设计\index.html -->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张瀚文｜高级网页设计课堂实践</title>
+    <style>
+        :root { --ink: #38232c; --muted: #78616b; --paper: #fffafd; --line: #f0dce3; --pink-dark: #98516a; --pink: #e99db5; }
+        * { box-sizing: border-box; }
+        body { min-height: 100vh; margin: 0; color: var(--ink); font-family: "Microsoft YaHei", "Noto Sans SC", sans-serif; background: #fff4f7; }
+        .hero { position: relative; overflow: hidden; padding: 30px max(24px, calc((100% - 1120px) / 2)) 86px; color: var(--ink); background: linear-gradient(125deg, #f5c5d3 0%, #f3b8ca 58%, #f8d5de 100%); }
+        .hero::after { content: ""; position: absolute; right: 8%; bottom: -95px; width: 260px; height: 260px; border: 34px solid rgba(255, 255, 255, .12); border-radius: 50%; }
+        .topline, .hero-content, .container { position: relative; z-index: 1; }
+        .topline { display: flex; justify-content: space-between; align-items: center; max-width: 1120px; margin: 0 auto; color: #714657; font-size: 13px; letter-spacing: 1px; }
+        .topline span:last-child { color: #815263; }
+        .hero-content { max-width: 1120px; margin: 80px auto 0; }
+        .eyebrow { margin-bottom: 15px; color: #98516a; font-size: 14px; letter-spacing: 3px; }
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { max-width: 760px; margin-bottom: 18px; font-family: Georgia, "Microsoft YaHei", serif; font-size: clamp(36px, 7vw, 72px); line-height: 1.08; letter-spacing: 1px; }
+        .hero-content > p { max-width: 580px; color: #684854; font-size: 18px; line-height: 1.8; }
+        .container { width: min(1120px, calc(100% - 40px)); margin: -38px auto 54px; }
+        .intro { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 28px; border: 1px solid rgba(255, 255, 255, .75); background: var(--paper); box-shadow: 0 18px 36px rgba(23, 36, 51, .12); }
+        .intro strong { color: var(--pink-dark); }
+        .badge { padding: 8px 12px; color: #8d5268; white-space: nowrap; background: #fce8ee; border-radius: 3px; font-size: 13px; }
+        .title { display: flex; align-items: baseline; gap: 12px; margin: 48px 0 18px; font-size: 28px; }
+        .title small { color: var(--muted); font-size: 13px; font-weight: normal; letter-spacing: 1px; }
+        .catalog { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+        .card { display: flex; min-height: 248px; flex-direction: column; padding: 22px; color: var(--ink); text-decoration: none; border: 1px solid var(--line); background: var(--paper); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+        .card:hover { transform: translateY(-7px); border-color: var(--pink); box-shadow: 0 16px 26px rgba(83, 36, 57, .14); }
+        .card:nth-child(2) { background: #fff5fa; }
+        .card:nth-child(3) { background: #fff6f2; }
+        .card:nth-child(4) { background: #faf4fa; }
+        .icon { color: var(--pink); font-size: 34px; line-height: 1; }
+        .card h3 { margin: 30px 0 10px; font-size: 20px; }
+        .card p { flex: 1; margin-bottom: 20px; color: var(--muted); line-height: 1.75; }
+        .enter { color: var(--pink-dark); font-size: 13px; font-weight: bold; letter-spacing: 1px; }
+        .route { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid var(--line); background: var(--line); }
+        .route-item { padding: 22px; background: var(--paper); }
+        .route-item b { display: block; margin-bottom: 8px; color: var(--pink); font-size: 28px; }
+        .route-item p { margin-bottom: 0; color: var(--muted); line-height: 1.7; }
+        .prompt { padding: 24px 28px; color: #66515b; line-height: 1.9; border-left: 5px solid var(--pink); background: var(--paper); }
+        footer { padding: 26px; color: var(--muted); text-align: center; font-size: 13px; }
+        @media (max-width: 850px) { .catalog { grid-template-columns: repeat(2, 1fr); } .hero-content { margin-top: 60px; } }
+        @media (max-width: 560px) { .hero { padding: 24px 20px 76px; } .topline span:last-child { display: none; } .container { width: min(100% - 28px, 1120px); } .intro, .title { align-items: flex-start; flex-direction: column; } .catalog, .route { grid-template-columns: 1fr; } .card { min-height: 210px; } }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="topline"><span>WEB DESIGN / PRACTICE ARCHIVE</span><span>2026 · CLASS NOTES</span></div>
+        <div class="hero-content">
+            <div class="eyebrow">张瀚文的学习现场</div>
+            <h1>高级网页设计<br>课堂实践</h1>
+            <p>从布局、图标到 JavaScript 基础，把每一次课堂练习整理成可以打开、可以复习的本地网页。</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="intro">
+            <div>欢迎来到 <strong>张瀚文的《高级网页设计》课堂实践</strong></div>
+            <span class="badge">本地原生代码 · 6 个练习</span>
+        </section>
+
+        <h2 class="title">课堂目录 <small>COURSE INDEX</small></h2>
+
+        <section class="catalog">
+            <a class="card" href="9-2.html">
+                <div class="icon">01</div>
+                <h3>Flex 复习</h3>
+                <p>学习 Flex 弹性布局、主轴、交叉轴、弹性伸缩与卡片布局。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="svg005.html">
+                <div class="icon">02</div>
+                <h3>字体图标</h3>
+                <p>使用 SVG 图标和交互效果制作网页导航组件。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="dataType.html" title="点击进入数据类型与运算符页面" aria-label="点击进入数据类型与运算符页面">
+                <div class="icon">03</div>
+                <h3>数据类型与运算符</h3>
+                <p>学习 JavaScript 数据类型、运算符、类型转换与基础循环练习。</p>
+                <span class="enter">点击进入 →</span>
+            </a>
+
+            <a class="card" href="font/demo_index.html">
+                <div class="icon">04</div>
+                <h3>字体资源实验室</h3>
+                <p>浏览本地 iconfont 字体资源，查看 Unicode、Font class 与 Symbol 用法。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="object.html">
+                <div class="icon">05</div>
+                <h3>JavaScript 对象</h3>
+                <p>练习对象的创建、属性与方法、遍历，以及引用类型的赋值。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="function.html">
+                <div class="icon">06</div>
+                <h3>JavaScript 函数</h3>
+                <p>认识匿名函数与箭头函数，并通过随机猜数游戏练习函数调用和流程控制。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="iconfont-1.html">
+                <div class="icon">07</div>
+                <h3>Studio Oribi · Font Awesome</h3>
+                <p>以艺术品牌 Studio Oribi 的视觉语言重排 Font Awesome 图标，字体图标方式，CDN 全本地化。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="iconfont-2.html">
+                <div class="icon">08</div>
+                <h3>Studio Oribi · Lucide</h3>
+                <p>同品牌语言的 Lucide SVG 图标展示，使用 data-lucide 替换为内联 SVG，零字体依赖。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="iconfont-3.html">
+                <div class="icon">09</div>
+                <h3>移动端底部导航 · 字体图标</h3>
+                <p>使用 font/ 目录的 iconfont.css，固定底部、自适应宽度、4 项含数字徽章与红点、iOS 安全区适配。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+
+            <a class="card" href="iconfont-4.html">
+                <div class="icon">10</div>
+                <h3>移动端底部导航 · SVG Symbol</h3>
+                <p>同一组图标改用 iconfont.js 的 symbol 引用，fill: currentColor 让 SVG 跟随父级颜色，零字体依赖。</p>
+                <span class="enter">打开练习 →</span>
+            </a>
+        </section>
+
+        <h2 class="title">学习路线 <small>FROM STRUCTURE TO INTERACTION</small></h2>
+
+        <section class="route">
+            <div class="route-item"><b>01</b><p>先用 Flex 组织页面结构，理解布局如何响应不同屏幕。</p></div>
+            <div class="route-item"><b>02</b><p>再用 SVG 与字体图标建立更有辨识度的界面元素。</p></div>
+            <div class="route-item"><b>03</b><p>最后通过 JavaScript 数据和运算练习，让页面产生变化。</p></div>
+        </section>
+
+        <h2 class="title">本次页面提示词 <small>ORIGINAL BRIEF</small></h2>
+
+        <section class="prompt">
+            之前创建的页面，包括本目录下的所有网页的超链接，使用原生代码，不使用 CDN，新页面名称为 index.html，主题为张瀚文的《高级网页设计》课堂实践，美化页面，课堂目录中包含 Flex 复习、字体图标、数据类型与运算符，我现在新加了一个版块给我直接更改。页面中包括本提示词。
+        </section>
+    </main>
+
+    <footer>
+        © 2026 张瀚文的《高级网页设计》课堂实践
+    </footer>
+</body>
+</html>
