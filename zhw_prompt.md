@@ -64,4 +64,4 @@
 
 **时间**：2026-11-04
 **模型**：Trae CN（proprietary model）
-**提示词**：`C:\Users\DELL\Desktop\7` 要求项目一比一还原，使用trae，代码按照之前上课设定的规则，所有 CSS 类名、id、JS 变量必须以 `zhw_` 开头，注释也要有你的姓名。github仓库名称要包含自己姓名全拼，重复的同学+学号后三位（我的学号后三位是120，全名为zhanghanwen）
+**提示词**：`C:\Users\DELL\Desktop\7` 要求项目一比一还原，使用trae，代码按照之前上课设定的规则，所有 CSS 类名、id、JS 变量必须以 `zhw_` 开头（zhw为姓名首字母缩写），注释也要有你的姓名。github仓库名称要包含自己姓名全拼，重复的同学+学号后三位（学号后三位120，全名zhanghanwen，仓库已存在 `zhanghanwen120`）。
