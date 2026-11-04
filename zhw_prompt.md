@@ -47,3 +47,21 @@
 **时间**：2026-10-30
 **模型**：Trae CN（proprietary model）
 **提示词**：创建技能skill：提交到github，将本项目提交commit并push到`https://github.com/zhwzhwzhw1212/zhanghanwen120.git`，使用已设置公钥。
+
+---
+
+**时间**：2026-11-04
+**模型**：Trae CN（proprietary model）
+**提示词**：修改规则文件AGENTS.md，在新建html文件时加入注释，注释包括：张瀚文，建立时间，使用大模型，功能名称。在js部分函数加上函数主要实现功能的注释。
+
+---
+
+**时间**：2026-11-04
+**模型**：Trae CN（proprietary model）
+**提示词**：请给我新建一个html文件，显示tab选项卡，选项卡分别为：国内新闻，省内新闻，国际新闻，最热新闻。国内新闻设定为默认选项。js文件单独放在js文件夹中，外部引用。要求js中的tab选项卡可复用，实现代码中的包含监听事件，先清除所有选项卡的选中状态，然后再设置当前元素的选中状态。
+
+---
+
+**时间**：2026-11-04
+**模型**：Trae CN（proprietary model）
+**提示词**：`C:\Users\DELL\Desktop\7` 要求项目一比一还原，使用trae，代码按照之前上课设定的规则，所有 CSS 类名、id、JS 变量必须以 `zhw_` 开头，注释也要有你的姓名。github仓库名称要包含自己姓名全拼，重复的同学+学号后三位（我的学号后三位是120，全名为zhanghanwen）

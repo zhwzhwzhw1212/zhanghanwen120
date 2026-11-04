@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+作者：张瀚文
+创建时间：2026-11-04
+使用模型：Trae CN
+功能：使用原生 JS 实现可复用的新闻 Tab 选项卡，默认选中国内新闻。
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻 Tab 选项卡 · 张瀚文</title>
+    <style>
+        :root {
+            --zhw_ink:   #1f2937;
+            --zhw_muted: #6b7280;
+            --zhw_line:  #e5e7eb;
+            --zhw_paper: #ffffff;
+            --zhw_theme: #ef4444;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 40px 16px;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #f3f4f6;
+            color: var(--zhw_ink);
+        }
+        .zhw_wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--zhw_paper);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+            overflow: hidden;
+        }
+
+        /* ---- 选项卡头部 ---- */
+        .zhw_tab_bar {
+            display: flex;
+            border-bottom: 2px solid var(--zhw_line);
+        }
+        .zhw_tab_item {
+            flex: 1;
+            padding: 16px 8px;
+            text-align: center;
+            font-size: 15px;
+            color: var(--zhw_muted);
+            cursor: pointer;
+            position: relative;
+            transition: color .2s;
+            user-select: none;
+        }
+        .zhw_tab_item:hover { color: var(--zhw_ink); }
+        .zhw_tab_item.zhw_tab_active {
+            color: var(--zhw_theme);
+            font-weight: bold;
+        }
+        .zhw_tab_item.zhw_tab_active::after {
+            content: "";
+            position: absolute;
+            left: 20%;
+            right: 20%;
+            bottom: -2px;
+            height: 3px;
+            background: var(--zhw_theme);
+            border-radius: 2px;
+        }
+
+        /* ---- 选项卡内容面板 ---- */
+        .zhw_tab_content { padding: 20px 24px 24px; }
+        .zhw_tab_panel {
+            display: none;          /* 默认隐藏 */
+            line-height: 1.9;
+            color: var(--zhw_ink);
+        }
+        .zhw_tab_panel.zhw_tab_active { display: block; }   /* 选中才显示 */
+
+        .zhw_news_title {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .zhw_news_time {
+            font-size: 12px;
+            color: var(--zhw_muted);
+            margin-bottom: 8px;
+        }
+        .zhw_news_item {
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--zhw_line);
+        }
+        .zhw_news_item:last-child { border-bottom: none; }
+
+        .zhw_back {
+            display: block;
+            max-width: 720px;
+            margin: 16px auto 0;
+            font-size: 13px;
+            color: var(--zhw_muted);
+            text-decoration: none;
+        }
+        .zhw_back:hover { color: var(--zhw_theme); }
+    </style>
+</head>
+<body>
+
+<div class="zhw_wrap">
+    <!-- 选项卡按钮栏 -->
+    <div class="zhw_tab_bar">
+        <div class="zhw_tab_item zhw_tab_active" data-index="0">国内新闻</div>
+        <div class="zhw_tab_item"               data-index="1">省内新闻</div>
+        <div class="zhw_tab_item"               data-index="2">国际新闻</div>
+        <div class="zhw_tab_item"               data-index="3">最热新闻</div>
+    </div>
+
+    <!-- 选项卡内容面板 -->
+    <div class="zhw_tab_content">
+        <div class="zhw_tab_panel zhw_tab_active">
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">嫦娥六号完成月背采样返回任务</div>
+                <div class="zhw_news_time">2026-11-04 10:20 · 新华社</div>
+                <div>嫦娥六号探测器今日成功着陆月背并带回月壤样本，标志着我国深空探测再进一步。</div>
+            </div>
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">全国铁路迎来冬运第一天 客流平稳</div>
+                <div class="zhw_news_time">2026-11-04 09:00 · 人民日报</div>
+                <div>全国铁路昨日发送旅客 1358 万人次，各主要线路运行正常。</div>
+            </div>
+        </div>
+
+        <div class="zhw_tab_panel">
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">浙江省数字经济规模突破 6 万亿元</div>
+                <div class="zhw_news_time">2026-11-04 08:30 · 浙江日报</div>
+                <div>全省数字经济核心产业增加值占 GDP 比重提升至 18.2%。</div>
+            </div>
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">粤港澳大湾区首条跨海高铁通车</div>
+                <div class="zhw_news_time">2026-11-03 17:10 · 南方日报</div>
+                <div>深江铁路正式运营，深圳至江门仅需 45 分钟。</div>
+            </div>
+        </div>
+
+        <div class="zhw_tab_panel">
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">联合国气候大会达成新减排协议</div>
+                <div class="zhw_news_time">2026-11-04 07:50 · Reuters</div>
+                <div>近 200 个国家承诺 2035 年前将碳排放减少 55%。</div>
+            </div>
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">全球芯片市场迎来复苏期</div>
+                <div class="zhw_news_time">2026-11-03 22:05 · Bloomberg</div>
+                <div>AI 算力需求带动存储芯片价格连续 6 周上涨。</div>
+            </div>
+        </div>
+
+        <div class="zhw_tab_panel">
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">热搜第一：国产大飞机 C919 完成跨洋商业航班</div>
+                <div class="zhw_news_time">2026-11-04 11:00 · 微博热搜</div>
+                <div>C919 执飞上海—东京航线，全程 3 小时 20 分钟，上座率 100%。</div>
+            </div>
+            <div class="zhw_news_item">
+                <div class="zhw_news_title">热搜第二：新一代 AI 模型中文理解能力首次超越人类</div>
+                <div class="zhw_news_time">2026-11-04 10:40 · 知乎热榜</div>
+                <div>在中文综合评测基准 SuperCLUE 上，新模型得分首次超过人类平均水平。</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="zhw_back" href="index.html">← 返回课堂首页</a>
+
+<script src="js/tab.js"></script>
+<script>
+    // 页面加载完成后初始化选项卡
+    zhw_tab.init({
+        tabs:       '.zhw_tab_item',
+        panels:     '.zhw_tab_panel',
+        activeClass: 'zhw_tab_active'
+    });
+</script>
+
+</body>
+</html>

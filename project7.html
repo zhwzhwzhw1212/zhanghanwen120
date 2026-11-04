@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--
+作者：张瀚文
+创建时间：2026-11-04
+使用模型：Trae CN
+功能：一比一还原汽车导购频道，5 个 Tab（导购/3-9万/9-17万/17-42万/SUV）切换 5 组不同文章列表。
+-->
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>汽车导购频道 · 张瀚文</title>
+    <style>
+        /* ==================== 张瀚文 全局配色 ==================== */
+        :root {
+            --zhw_ink:     #1f2937;
+            --zhw_muted:   #8b8f96;
+            --zhw_line:    #e6e6e6;
+            --zhw_paper:   #ffffff;
+            --zhw_theme:   #e53935;    /* 选中 Tab 的红色 */
+            --zhw_link:    #2563eb;    /* 文章标题蓝色链接 */
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: #f0f0f0;
+            color: var(--zhw_ink);
+            padding: 30px 16px 40px;
+        }
+
+        /* ==================== 页面容器 ==================== */
+        .zhw_guide {
+            max-width: 780px;
+            margin: 0 auto;
+            background: var(--zhw_paper);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+            overflow: hidden;
+        }
+
+        /* ==================== Tab 栏 ==================== */
+        .zhw_tab_bar {
+            display: flex;
+            border-bottom: 1px solid var(--zhw_line);
+        }
+        .zhw_tab_item {
+            flex: 1;
+            padding: 14px 4px;
+            text-align: center;
+            font-size: 15px;
+            color: var(--zhw_muted);
+            cursor: pointer;
+            position: relative;
+            transition: color .2s;
+            user-select: none;
+        }
+        .zhw_tab_item:hover { color: var(--zhw_ink); }
+        /* 选中态：红色文字 + 下方红色下划线 */
+        .zhw_tab_item.zhw_tab_active {
+            color: var(--zhw_theme);
+            font-weight: bold;
+        }
+        .zhw_tab_item.zhw_tab_active::after {
+            content: "";
+            position: absolute;
+            left: 15%;
+            right: 15%;
+            bottom: 0;
+            height: 2px;
+            background: var(--zhw_theme);
+        }
+
+        /* ==================== 面板公共 ==================== */
+        .zhw_tab_panel { display: none; }   /* 默认隐藏 */
+        .zhw_tab_panel.zhw_tab_active { display: block; }
+
+        /* 面板顶部的"标题栏"一行 */
+        .zhw_panel_hero {
+            padding: 14px 24px 6px;
+            font-size: 13px;
+            color: var(--zhw_muted);
+            border-bottom: 1px solid var(--zhw_line);
+            background: #fafafa;
+        }
+        .zhw_panel_hero strong {
+            color: var(--zhw_ink);
+            font-size: 14px;
+        }
+
+        /* 文章列表 */
+        .zhw_news_list { padding: 0 24px; }
+        .zhw_news_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--zhw_line);
+            gap: 12px;
+        }
+        .zhw_news_item:last-child { border-bottom: none; }
+        .zhw_news_title {
+            flex: 1;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--zhw_link);
+            line-height: 1.5;
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .zhw_news_title:hover { color: var(--zhw_theme); }
+        .zhw_news_date {
+            flex-shrink: 0;
+            font-size: 12px;
+            color: var(--zhw_muted);
+        }
+
+        /* 返回首页 */
+        .zhw_back {
+            display: block;
+            max-width: 780px;
+            margin: 16px auto 0;
+            font-size: 13px;
+            color: var(--zhw_muted);
+            text-decoration: none;
+        }
+        .zhw_back:hover { color: var(--zhw_theme); }
+    </style>
+</head>
+<body>
+
+<div class="zhw_guide">
+    <!-- ============ Tab 按钮栏 ============ -->
+    <div class="zhw_tab_bar">
+        <div class="zhw_tab_item zhw_tab_active" data-index="0">导购</div>
+        <div class="zhw_tab_item"               data-index="1">3-9万</div>
+        <div class="zhw_tab_item"               data-index="2">9-17万</div>
+        <div class="zhw_tab_item"               data-index="3">17-42万</div>
+        <div class="zhw_tab_item"               data-index="4">SUV</div>
+    </div>
+
+    <!-- ============ 面板 0：导购 ============ -->
+    <div class="zhw_tab_panel zhw_tab_active">
+        <div class="zhw_panel_hero"><strong>改变品牌的未来</strong> 认识豪华品牌最便宜车型</div>
+        <div class="zhw_news_list">
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">推荐：X1等城市四驱Style+经济省油的SUV</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">全景天窗/保养便利 30万齐落齐四驱SUV推荐</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">最高降幅20万！奥迪Q5等年底特惠SUV盘点</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">比拼硬实力 8款低配四驱紧凑型SUV性能点评</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">花钱也能养SUV 翼博等入门SUV使用手册</a>
+                <span class="zhw_news_date">12/16</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">最高优惠4.3万 十款15万SUV年末购买推荐</a>
+                <span class="zhw_news_date">12/16</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 面板 1：3-9万 ============ -->
+    <div class="zhw_tab_panel">
+        <div class="zhw_panel_hero"><strong>最低仅4.6万元起</strong> 超低价SUV购买价值点评</div>
+        <div class="zhw_news_list">
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">全民摇号时代？六款低价占号必备车型推荐</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">凌派/观致3等 2019全新家用车盘点</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">坚持标配高路线！静态评测华泰路盛E70</a>
+                <span class="zhw_news_date">12/09</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">买车先看销量 10月份销量前十名新车盘点</a>
+                <span class="zhw_news_date">11/28</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">秒拉正当时 车展后清仓特价老牌车型推荐</a>
+                <span class="zhw_news_date">11/29</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">土家气质 细数车展那些低价车上的"神器"</a>
+                <span class="zhw_news_date">11/27</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 面板 2：9-17万 ============ -->
+    <div class="zhw_tab_panel">
+        <div class="zhw_panel_hero"><strong>15万级降价车谁更值</strong> 预算/油耗/空间较量</div>
+        <div class="zhw_news_list">
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">爸爸去哪？亲子出游适合车型和注意事项</a>
+                <span class="zhw_news_date">12/20</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">最高降幅20万！奥迪Q5等年底特惠SUV盘点</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">配方配气肯定有！传祺GA3极速试验图解</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">高尔夫7≠两厢版速腾 配置/动力差异解读</a>
+                <span class="zhw_news_date">12/17</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">花钱也能养SUV 翼博等入门SUV使用手册</a>
+                <span class="zhw_news_date">12/16</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">最高优惠4.3万 十款15万SUV年末购买推荐</a>
+                <span class="zhw_news_date">12/16</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 面板 3：17-42万 ============ -->
+    <div class="zhw_tab_panel">
+        <div class="zhw_panel_hero"><strong>B级品质满足A级需求</strong> 路盛E70亮点详解析</div>
+        <div class="zhw_news_list">
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">购车必看 凯迪拉克XT5领先型28T深度体验</a>
+                <span class="zhw_news_date">12/20</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">爸爸去哪？亲子出游适合车型和注意事项</a>
+                <span class="zhw_news_date">12/20</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">推荐：X1等城市四驱Style+经济省油的SUV</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">全景天窗/保养便利 30万齐落齐四驱SUV推荐</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">最高降幅20万！奥迪Q5等年底特惠SUV盘点</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ 面板 4：SUV ============ -->
+    <div class="zhw_tab_panel">
+        <div class="zhw_panel_hero"><strong>改变品牌的未来</strong> 认识豪华品牌最便宜车型</div>
+        <div class="zhw_news_list">
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">爸爸去哪？亲子出游适合车型和注意事项</a>
+                <span class="zhw_news_date">12/20</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">推荐：X1等城市四驱Style+经济省油的SUV</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">全景天窗/保养便利 30万齐落齐四驱SUV推荐</a>
+                <span class="zhw_news_date">12/19</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">最高降幅20万！奥迪Q5等年底特惠SUV盘点</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">比拼硬实力 8款低配四驱紧凑型SUV性能点评</a>
+                <span class="zhw_news_date">12/18</span>
+            </div>
+            <div class="zhw_news_item">
+                <a class="zhw_news_title" href="#">新蒙迪欧/福克斯等！盘点2019中级车大变动</a>
+                <span class="zhw_news_date">12/17</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a class="zhw_back" href="index.html">← 返回课堂首页</a>
+
+<!-- 张瀚文：引用外部 js/tab.js，可复用的选项卡模块 -->
+<script src="js/tab.js"></script>
+<script>
+    // 张瀚文：页面加载完成后初始化汽车导购频道的 5 个 Tab
+    zhw_tab.init({
+        tabs:       '.zhw_tab_item',
+        panels:     '.zhw_tab_panel',
+        activeClass: 'zhw_tab_active'
+    });
+</script>
+
+</body>
+</html>
